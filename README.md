@@ -10,12 +10,11 @@ NOTE：THIS IS A TEMPORARY INTRODUTION TO THIS REPOSITORY
 ppl is an optimized pipeline to conduct many steps in analyses in the manuscript instead of the raw scripts with poor versatility.(ppl代替了原文分析中零散的，适用面窄的脚本,是一个优化整合后的pipeline). But we still shared raw codes in the "source_code" directory for possible use.(但考虑到可能有人需要，我们还是将最初的使用的脚本分享出来，他们可以在source_code这个目录下找到）
 
 # PREREQUISITES
-
-python2:pysam
-NOTE：ppl usesd scripts in https://github.com/sankaranlab/mito-genotyping to call variations and generate .rds file.
-Python3 
-R
-Samtools
+python2:pysam \n
+NOTE：ppl usesd scripts in https://github.com/sankaranlab/mito-genotyping to call variations and generate .rds file. \n
+Python3 \n
+R \n
+Samtools \n
 
 # METHODS AND PRE-PROCESSINGS
 1.For 10x data:
