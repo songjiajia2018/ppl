@@ -12,7 +12,7 @@ ppl is an optimized pipeline to conduct many steps in analyses in the manuscript
 # PREREQUISITES
 python2:pysam
 NOTE：ppl usesd scripts in https://github.com/sankaranlab/mito-genotyping to call variations and generate .rds file.
-Python3
+Python3 
 R
 Samtools
 
