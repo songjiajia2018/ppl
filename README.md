@@ -2,10 +2,9 @@ NOTE：THIS IS A TEMPORARY INTRODUTION TO THIS REPOSITORY
 # Table of Contents
 1. [INTRODUCTION](#introduction)
 2. [PREREQUISITES](#prerequisites)
-3. [METHODS AND PRE-PROCESSINGS](#methods and pre-processings)
+3. [METHODS AND PRE-PROCESSINGS](#methods-and-pre-processings)
 4. [USAGE](#usage)
-5. [OUTPUTS](#outputs)
-6. [EXAMPLES](#examples)
+5. [EXAMPLES](#examples)
 
 # INTRODUCTION 
 ppl is an optimized pipeline to conduct many steps in analyses in the manuscript instead of the raw scripts with poor versatility.(ppl代替了原文分析中零散的，适用面窄的脚本,是一个优化整合后的pipeline). But we still shared raw codes in the "source_code" directory for possible use.(但考虑到可能有人需要，我们还是将最初的使用的脚本分享出来，他们可以在source_code这个目录下找到）
