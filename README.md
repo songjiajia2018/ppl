@@ -10,6 +10,7 @@ NOTE：THIS IS A TEMPORARY INTRODUTION TO THIS REPOSITORY
 ppl is an optimized pipeline to conduct many steps in analyses in the manuscript instead of the raw scripts with poor versatility.(ppl代替了原文分析中零散的，适用面窄的脚本,是一个优化整合后的pipeline). But we still shared raw codes in the "source_code" directory for possible use.(但考虑到可能有人需要，我们还是将最初的使用的脚本分享出来，他们可以在source_code这个目录下找到）
 
 # PREREQUISITES
+
 python2:pysam
 NOTE：ppl usesd scripts in https://github.com/sankaranlab/mito-genotyping to call variations and generate .rds file.
 Python3 
@@ -121,9 +122,11 @@ optional arguments:
   ```
   
  INPUT:
- The input can be a single bam/sam file, a file list or a directory depending on user's requirements. For "--split-sam10x" option, the input must be a sam file or a file list(in tsv format). The list must contain three columns without headers: sam file name, out prefix, annotation file. The example file list and annotation file can be found in a directory named "Examples". When the input is a single sam file, the out prefix and the annotation file must be spscified. For "--indrops" option, the input must be a file list(in tsv format). The list must contain three columns without headers: bam file name, out prefix, celltype. For "--pileup(-p)" option, the input must be a bam file or a file list(in tsv format). The list should contain two columns without headers. bam file name, out prefix. For "--merge(-m)" and "--generate-rds(-r)", the input should be a directory. Parameters combination "-p -m -r " is allowed (input is controlled by -p)  and they can co-exists with "--split-sam10x"(input controlled by --split-sam10x) or "--indrops” （input controlled by --indrops) to form a complete pipeline.(这三个参数加上任意其他两个参数中的一个都可以产生rds)。
+ 
+The input can be a single bam/sam file, a file list or a directory depending on user's requirements. For "--split-sam10x" option, the input must be a sam file or a file list(in tsv format). The list must contain three columns without headers: sam file name, out prefix, annotation file. The example file list and annotation file can be found in a directory named "Examples". When the input is a single sam file, the out prefix and the annotation file must be spscified. For "--indrops" option, the input must be a file list(in tsv format). The list must contain three columns without headers: bam file name, out prefix, celltype. For "--pileup(-p)" option, the input must be a bam file or a file list(in tsv format). The list should contain two columns without headers. bam file name, out prefix. For "--merge(-m)" and "--generate-rds(-r)", the input should be a directory. Parameters combination "-p -m -r " is allowed (input is controlled by -p)  and they can co-exists with "--split-sam10x"(input controlled by --split-sam10x) or "--indrops” （input controlled by --indrops) to form a complete pipeline.(这三个参数加上任意其他两个参数中的一个都可以产生rds)。
   
  OUTPUT：
+ 
  "--split-sam10x" will provide a new file list and bam files for pileup.
  "--indrops" will generate merged ATCG and coverage fiels according to celltypes.
  "--Pileup" will generate ATCG and coverage files for every single bam.
