@@ -5,12 +5,12 @@ NOTE：THIS IS A TEMPORARY INTRODUTION TO THIS REPOSITORY
 2. [PREREQUISITES](#prerequisites)
 3. [METHODS AND PRE-PROCESSING](#methods-and-pre-processing)
 4. [USAGE](#usage)  
-    4.1 [RUNNING PPL WITH A SINGLE MODULE](#running-ppl-with-a-single-module)  
-    4.2 [RUNNING PPL WITH MANY MODULES](#running-ppl-with-many-modules)  
+    4.1 [RUNNING PPL WITH A SINGLE FUNCTION](#running-ppl-with-a-single-function)  
+    4.2 [RUNNING PPL WITH MUTIPLE FUNCTIONS](#running-ppl-with-mutiple-functions)  
 5. [EXAMPLES](#examples)
 
 # INTRODUCTION 
-PPL is an optimized and integrated pipeline that conducts many steps of analyses within the manuscript instead of raw scripts that have poor versatility. However, raw codes within the "source_code" directory were still shared for possible use. PPL integrated five main functions, including (i) calling variations from a bam file and generating five txt files with 'A', 'T', 'C', 'G', 'coverage' suffixes respectively("--pileup" or "-p"); (ii) merging all the 'A', 'T', 'C', 'G', 'coverage' txt files in a directory to five files with ".gz" format for the following rds generation("--merge" or "-m"); (iii) generating rds file for downstream analyses from a directory containing merged 'A', 'T', 'C', 'G', 'coverage' txt file("--generate-rds" or "-r"); (iv) spliting a big sam file to several parts based on the cell barcodes and their corresponding celltype annotations("--split-sam10x"); (V) merging 'A', 'T', 'C', 'G', 'coverage' txt files of the same celltype according to user's cell annotations.
+PPL is an optimized and integrated pipeline that conducts many steps of analyses within the manuscript instead of raw scripts that have poor versatility. However, raw codes within the "source_code" directory were still shared for possible use. PPL integrated five main functions, including (i) calling variations from a bam file and generating five txt files with 'A', 'T', 'C', 'G', 'coverage' suffixes respectively("--pileup" or "-p"); (ii) merging all the 'A', 'T', 'C', 'G', 'coverage' txt files in a directory to five files with ".gz" format for the following rds generation("--merge" or "-m"); (iii) generating rds file for downstream analyses from a directory containing merged 'A', 'T', 'C', 'G', 'coverage' txt file("--generate-rds" or "-r"); (iv) spliting a big sam file to several parts based on the cell barcodes and their corresponding celltype annotations("--split-sam"); (V) merging 'A', 'T', 'C', 'G', 'coverage' txt files of the same celltype according to user's cell annotations("--mergesamecell").
 
 # PREREQUISITES
 python2:pysam  
@@ -69,7 +69,7 @@ As is described above, PPL has five main functions resulting different inputs an
 User can find examples for input and output in the "ppl/Examples" dircetory.
 To use the PPL easier, users can just download the whole repository and copy it to the work directory. 
 
-# RUNNING PPL WITH A SINGLE MODULE
+# RUNNING PPL WITH A SINGLE FUNCTION
 1. "--pileup" or "-p": calling variations from a bam file and generating five txt files with 'A', 'T', 'C', 'G', 'coverage' suffixes respectively.
 
 (i) Input is a single file: The input should be a sorted bam file. User can specify prefixes of outputs with the option "--outprefix".
@@ -84,7 +84,7 @@ To use the PPL easier, users can just download the whole repository and copy it 
     3563907_2.bam,3563907
     3564431_2.bam,3564431
     3564753_2.bam,3564753
-    '''
+    ```
     
     The output are five mutations files for each input :
     
@@ -96,20 +96,24 @@ To use the PPL easier, users can just download the whole repository and copy it 
     3562459.T.txt         3562814.T.txt         3563095.T.txt         3563458.T.txt         3563907.T.txt         3564431.T.txt         3564753.T.txt
     ```
     
-2.
+2. "--merge" or "-m":merging all the 'A', 'T', 'C', 'G', 'coverage' txt files in a directory to five files with ".gz" format for the following rds generation.
+
+(i) with "--pileup " or "--mergesamecell": The input will automatically set as 
     
 
 
 
-
+# RUNNING PPL WITH MUTIPLE FUNCTIONS
 
 
 The input can be a single bam/sam file, a file list or a directory; depending on the user's requirements.   
 For the "--split-sam10x" option, the input must be a sam file or a file list (in csv format). The list must contain three columns without headers: sam file name, out prefix, annotation file. The example file list and annotation file can be found in a directory named "Examples". When the input is a single sam file, the out prefix and the annotation file must be specified.  
-For the "--indrops" option, the input must be a file list (in csv format).The list must contain three columns without headers: bam file name, out prefix, cell-type.  
+For the "--" option, the input must be a file list (in csv format).The list must contain three columns without headers: bam file name, out prefix, cell-type.  
 For the "--pileup(-p)" option, the input must be a bam file or a file list (in csv format).  The list should contain two columns without headers, a bam file name and an out prefix.   
 For "--merge(-m)" and "--generate-rds(-r)", the input should be a directory.  
-Parameters combination "-p -m -r " is allowed (input is controlled by -p)  and they can co-exist with "--split-sam10x" (input controlled by --split-sam10x) and/or "--indrops” （input controlled by --indrops) to form a complete pipeline. (These three parameters plus any of the other two parameters can generate a rds).
+Parameters combination "-p -m -r " is allowed (input is controlled by -p)  and they can co-exist with "--split-sam10x" (input controlled by --split-sam10x) and/or "--
+
+” （input controlled by --) to form a complete pipeline. (These three parameters plus any of the other two parameters can generate a rds).
   
 OUTPUT：  
  "--split-sam10x" will provide a new file list and bam files for pileup.
