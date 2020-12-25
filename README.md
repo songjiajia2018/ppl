@@ -41,7 +41,7 @@ gzip -d filtered_feature_bc_matrix/barcodes.tsv.gz
 perl ../../../split_sam.pl hIslets_III_DMSO_36_1 ../../../GSE142465_Human3_CellAnnotation_final.tsv filtered_feature_bc_matrix/barcodes.tsv aln.sam >log
 ```
 The bam file of the last calling variation is generated from the sam file containing only MtDNA readings generated in the previous step.
-This step can be performed using PPL with --split-sam10x option to generate bam files and the corresponding file list. You can also run the complete pipeline with -p -m -r options.
+This step can be performed using PPL with --split-sam10x option to generate bam files and the corresponding file list. You can also run the complete pipeline with -p -m -r options.  
 
 2. For smart-seq2 data:
 The clean fastq files were processed as follows:
@@ -54,7 +54,7 @@ samtools view -h {INPUT_SORTED_BAM} {REGION} > {FINAL_SAM}
 samtools view -bS {FINAL_SAM} >{FINAL_BAM}
 ```
 
-For the pipeline in the manuscript, the genome and corresponding gtf file was GRCH38(The genome and gtf files used in this article are both GRCH38）
+For the pipeline in the manuscript, the genome and corresponding gtf file was GRCH38(The genome and gtf files used in this article are both GRCH38）  
 
 3. For inDrops data:
 Raw fastq reads were processed according to the custom inDrops pipelines (www.github.com/indrops/indrops) using Trimmomatic to trim reads, Bowtie 1.2.3 to map reads to the reference transcriptome and the meters as in the default_parameter YAML file.
