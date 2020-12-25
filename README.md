@@ -98,7 +98,7 @@ To use the PPL easier, users can just download the whole repository and copy it 
     
 2. "--merge" or "-m":merging all the 'A', 'T', 'C', 'G', 'coverage' txt files in a directory to five files with ".gz" format for the following rds generation.
 
-(i) with "--pileup " or "--mergesamecell": The input will automatically set as 
+(i) with "--pileup " or "--mergesamecell": The input directory path be  will automatically set as  "--outdir"/"--name" o
     
 
 
