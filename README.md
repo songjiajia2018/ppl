@@ -116,6 +116,7 @@ pplsmart_all.coverage.txt.gz
 (i) With "--merge": The input directory path is as same as it in "--merge" step.
 
 (ii) Without "--merge": The input must be a directory containing merged mutations files from the "--merge" step.   
+  
 4. "--split-sam": spliting a big sam file to several parts based on the cell barcodes and their corresponding celltype annotations.
 
 (i) Input is a single sam file: The input must be a sam file tagged with "CB:Z:" to record cell barcodes for each read. Besides, User must provide a file annotating each cell  barcode with a cell type. The example of a file with annotaions is presented below. User also can specify prefixes of outputs with the option "--outprefix". 
