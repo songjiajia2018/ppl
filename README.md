@@ -5,10 +5,12 @@ NOTE：THIS IS A TEMPORARY INTRODUTION TO THIS REPOSITORY
 2. [PREREQUISITES](#prerequisites)
 3. [METHODS AND PRE-PROCESSING](#methods-and-pre-processing)
 4. [USAGE](#usage)
+    4.1 [RUNNING PPL WITH A SINGLE MODULE](#running-ppl-with-a-single-module)
+    4.2 [RUNNING PPL WITH MANY MODULES](#running-ppl-with-many-modules)
 5. [EXAMPLES](#examples)
 
 # INTRODUCTION 
-PPL is an optimized and integrated pipeline that conducts many steps of analyses within the manuscript instead of raw scripts that have poor versatility. However, raw codes within the "source_code" directory were still shared for possible use.
+PPL is an optimized and integrated pipeline that conducts many steps of analyses within the manuscript instead of raw scripts that have poor versatility. However, raw codes within the "source_code" directory were still shared for possible use. PPL integrated five main functions, including (i) calling variations from a bam file and generating five txt files with 'A', 'T', 'C', 'G', 'coverage' suffixes respectively("--pileup" or "-p"); (ii) merging all the 'A', 'T', 'C', 'G', 'coverage' txt files in a directory to five files with ".gz" format for the following rds generation("--merge" or "-m"); (iii) generating rds file for downstream analyses from a directory containing merged 'A', 'T', 'C', 'G', 'coverage' txt file("--generate-rds" or "-r"); (iv) spliting a big sam file to several parts based on the cell barcodes and their corresponding celltype annotations("--split-sam10x"); (V) merging 'A', 'T', 'C', 'G', 'coverage' txt files of the same celltype according to user's cell annotations.
 
 # PREREQUISITES
 python2:pysam  
@@ -63,63 +65,14 @@ python2indrops.py {PROJECT_YAML} quantify
 The bam file obtained through the indrops process will be used for sort and call mutations. Since the coverage of indrops data is relatively low, we merged the mutation files of the same cell types. This step can be done through PPL, and will merge the files according to the user's cell annotations.
 
 # USAGE
-PPL integrated five main functions, including (i) calling variations from a bam file and generating five txt files with 'A', 'T', 'C', 'G', 'coverage' suffixes respectively("--pileup" or "-p"); (ii) merging all the 'A', 'T', 'C', 'G', 'coverage' txt files in a directory as ".gz" format for the following rds generation("--merge" or "-m"); (iii) generating rds file for downstream analyses from a directory containing merged 'A', 'T', 'C', 'G', 'coverage' txt file("--generate-rds" or "-r"): (iv) 
+As is described above, PPL has five main functions resulting different inputs and outputs. User can run a single module in the PPL or combine many of them to reach their purposes.
+# RUNNING PPL WITH A SINGLE MODULE
+
+
+
+
 To use the PPL easier, users can just download the whole repository and copy it to their work directory. 
-```
-usage: python ppl2_test.py [-h] [--input-filelist] --input INPUT [--name NAME]
-                    [--outprefix OUTPREFIX] [-t THREAD] [-p] [-m] [-r]
-                    [--outdir OUTDIR] [--pplpath PPLPATH] [--qbase QBASE]
-                    [--qalign QALIGN] [--maxBP MAXBP] [--reference REFERENCE]
-                    [--split-sam10x] [--split-chr SPLIT_CHR]
-                    [--split-annotation SPLIT_ANNOTATION] [--indrops]
- 
-optional arguments:
-  -h, --help            show this help message and exit
-  --input-filelist      Input files with related out-prefixes(separated by
-                        comma e.g.: sample1, out_prefix1, celltype (for
-                        indrops)/annotation(for splitting sam) ) from a file.
-  --input INPUT         the input file name.
-  --name NAME           The program will create a directory named by the
-                        argument. Sample processing and downstream analysis
-                        will be performed under the directory. (default:
-                        PROJECT_MITO)
-  --outprefix OUTPREFIX
-                        Specify an out-prefix for one file analysis. (default:
-                        ppldefault).
-  -t THREAD, --thread THREAD
-                        Specify the number of threads, the max number will be
-                        limited to your cpu counts. (default: 1)
-  -p, --pileup          Active Pileup Module to generate ATCG and coverage txt
-                        files. The input should be bams or a file with names
-                        of bams.
-  -m, --merge           Active Merge Module to merge results generated from
-                        pileup module. The input should be a directory.
-  -r, --generate-rds    Active Generate Rds Module to make rds file from
-                        merged pileup results. The input should be a directory
-  --outdir OUTDIR       Specify the output directory
-  --pplpath PPLPATH     Specify the mito directory
-  --qbase QBASE         Specify Minimum base quality to be considered for
-                        pileup. (default: 30)
-  --qalign QALIGN       Specify minimum alignment quality required to be
-                        considered. (default: 30)
-  --maxBP MAXBP         Specified maximum length of mtDNA genome. (default:
-                        16569, for mt.fa)
-  --reference REFERENCE
-                        Specify the mtDNA reference.
-                        (default:./ppl/mito_reference/mt.fa)
-  --split-sam10x        split sam according to the cell-type annotation, input
-                        sam files must be tagged with "CB:Z:" for reads
-                        barcodes.
-  --split-chr SPLIT_CHR
-                        Reads in out sam will be filtered by the chromosome.
-                        (default: MT)
-  --split-annotation SPLIT_ANNOTATION
-                        provide annotation file for the target sam when not
-                        using --input-filelist 
-  --indrops             Merge AGCT and coverage files according to annotation
-  ```
-  
-OPTIONS:
+
 
 
 The input can be a single bam/sam file, a file list or a directory; depending on the user's requirements.   
