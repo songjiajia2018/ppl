@@ -138,7 +138,7 @@ Output will be several sam files and a csv file named as "split_input_file_list.
 
    Output will be several sam files and a csv file named as "split_input_file_list.csv" which can be used in pileup process.
 
-5."--mergesamecell": merging 'A', 'T', 'C', 'G', 'coverage' txt files of the same celltype according to user's cell annotations.
+5."--mergesamecell": merging 'A', 'T', 'C', 'G', 'coverage' txt files of the same celltype according to user's cell annotations.  
 (i) Input is a file list: The input must be a csv table with the sorted bam file, out prefixes and the celltype annotations. Here is the example:
 
 ```
