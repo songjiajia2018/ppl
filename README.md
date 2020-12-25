@@ -43,7 +43,7 @@ perl ../../../split_sam.pl hIslets_III_DMSO_36_1 ../../../GSE142465_Human3_CellA
 The bam file of the last calling variation is generated from the sam file containing only MtDNA readings generated in the previous step.
 This step can be performed using PPL with --split-sam10x option to generate bam files and the corresponding file list. You can also run the complete pipeline with -p -m -r options.
 
-2. For smart-seq2 data:
+2.For smart-seq2 data:
 The clean fastq files were processed as follows:
 
 ```
@@ -56,7 +56,7 @@ samtools view -bS {FINAL_SAM} >{FINAL_BAM}
 
 For the pipeline in the manuscript, the genome and corresponding gtf file was GRCH38(The genome and gtf files used in this article are both GRCH38）
 
-3. For inDrops data:
+3.For inDrops data:
 Raw fastq reads were processed according to the custom inDrops pipelines (www.github.com/indrops/indrops) using Trimmomatic to trim reads, Bowtie 1.2.3 to map reads to the reference transcriptome and the meters as in the default_parameter YAML file.
 
 ```
@@ -74,7 +74,7 @@ User can find examples for input and output in the "ppl/Examples" dircetory.
 To use the PPL easier, users can just download the whole repository and copy it to the work directory. 
 
 # RUNNING PPL WITH A SINGLE FUNCTION
-1. "--pileup" or "-p": calling variations from a bam file and generating five txt files with 'A', 'T', 'C', 'G', 'coverage' suffixes respectively.
+1."--pileup" or "-p": calling variations from a bam file and generating five txt files with 'A', 'T', 'C', 'G', 'coverage' suffixes respectively.
 
 (i) Input is a single file: The input should be a sorted bam file. User can specify prefixes of outputs with the option "--outprefix".
 
@@ -96,7 +96,7 @@ To use the PPL easier, users can just download the whole repository and copy it 
     3562459.G.txt         3562814.G.txt         3563095.G.txt         3563458.G.txt         3563907.G.txt         3564431.G.txt         3564753.G.txt
     3562459.T.txt         3562814.T.txt         3563095.T.txt         3563458.T.txt         3563907.T.txt         3564431.T.txt         3564753.T.txt
  
-2. "--merge" or "-m": merging all the 'A', 'T', 'C', 'G', 'coverage' txt files in a directory to five files with ".gz" format for the following rds generation.
+2."--merge" or "-m": merging all the 'A', 'T', 'C', 'G', 'coverage' txt files in a directory to five files with ".gz" format for the following rds generation.
 
 (i) With "--pileup " or "--mergesamecell": The input directory path be will automatically set as "--outdir"/"--name" or "--outdir"/"--name"/samecell_merged.
 
@@ -111,13 +111,13 @@ pplsmart_all.G.txt.gz
 pplsmart_all.T.txt.gz
 pplsmart_all.coverage.txt.gz
 ```
-3. "--generate-rds" or "-r": generating rds file for downstream analyses from a directory containing merged 'A', 'T', 'C', 'G', 'coverage' txt files.
+3."--generate-rds" or "-r": generating rds file for downstream analyses from a directory containing merged 'A', 'T', 'C', 'G', 'coverage' txt files.
 
 (i) With "--merge": The input directory path is as same as it in "--merge" step.
 
 (ii) Without "--merge": The input must be a directory containing merged mutations files from the "--merge" step.   
   
-4. "--split-sam": spliting a big sam file to several parts based on the cell barcodes and their corresponding celltype annotations.
+4."--split-sam": spliting a big sam file to several parts based on the cell barcodes and their corresponding celltype annotations.
 
 (i) Input is a single sam file: The input must be a sam file tagged with "CB:Z:" to record cell barcodes for each read. Besides, User must provide a file annotating each cell  barcode with a cell type. The example of a file with annotaions is presented below. User also can specify prefixes of outputs with the option "--outprefix". 
 
@@ -137,7 +137,7 @@ Output will be several sam files and a csv file named as "split_input_file_list.
     ```
 Output will be several sam files and a csv file named as "split_input_file_list.csv" which can be used in pileup process.
 
-5. "--mergesamecell": merging 'A', 'T', 'C', 'G', 'coverage' txt files of the same celltype according to user's cell annotations.
+5."--mergesamecell": merging 'A', 'T', 'C', 'G', 'coverage' txt files of the same celltype according to user's cell annotations.
 (i) Input is a file list: The input must be a csv table with the sorted bam file, out prefixes and the celltype annotations. Here is the example:
 
 ```
