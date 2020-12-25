@@ -76,9 +76,9 @@ To use the PPL easier, users can just download the whole repository and copy it 
 # RUNNING PPL WITH A SINGLE FUNCTION
 1. "--pileup" or "-p": calling variations from a bam file and generating five txt files with 'A', 'T', 'C', 'G', 'coverage' suffixes respectively.
 
-(i) Input is a single file: The input should be a sorted bam file. User can specify prefixes of outputs with the option "--outprefix".
+ (i) Input is a single file: The input should be a sorted bam file. User can specify prefixes of outputs with the option "--outprefix".
 
-(ii) Input is a file list: The input should be a csv table with the sorted bam file and their out prefixes. Here is the example:
+ (ii) Input is a file list: The input should be a csv table with the sorted bam file and their out prefixes. Here is the example:
     
     3562459_2.bam,3562459
     3562814_2.bam,3562814
@@ -98,11 +98,11 @@ To use the PPL easier, users can just download the whole repository and copy it 
     
 2. "--merge" or "-m": merging all the 'A', 'T', 'C', 'G', 'coverage' txt files in a directory to five files with ".gz" format for the following rds generation.
 
-(i) With "--pileup " or "--mergesamecell": The input directory path be will automatically set as "--outdir"/"--name" or "--outdir"/"--name"/samecell_merged.
+ (i) With "--pileup " or "--mergesamecell": The input directory path be will automatically set as "--outdir"/"--name" or "--outdir"/"--name"/samecell_merged.
 
-(ii) Without "--pileup " or "--mergesamecell": The input must be a directory containing mutations files.
+ (ii) Without "--pileup " or "--mergesamecell": The input must be a directory containing mutations files.
 
-The outputs are five merged mutations files with .gz suffixes:
+ The outputs are five merged mutations files with .gz suffixes:
 
 ```
 pplsmart_all.A.txt.gz
@@ -114,13 +114,13 @@ pplsmart_all.coverage.txt.gz
 
 3. "--generate-rds" or "-r": generating rds file for downstream analyses from a directory containing merged 'A', 'T', 'C', 'G', 'coverage' txt files.
 
-(i) With "--merge": The input directory path is as same as it in "--merge" step.
+ (i) With "--merge": The input directory path is as same as it in "--merge" step.
 
-(ii) Without "--merge": The input must be a directory containing merged mutations files from the "--merge" step. 
+ (ii) Without "--merge": The input must be a directory containing merged mutations files from the "--merge" step. 
     
 4. "--split-sam": spliting a big sam file to several parts based on the cell barcodes and their corresponding celltype annotations.
 
-(i) Input is a single sam file: The input must be a sam file tagged with "CB:Z:" to record cell barcodes for each read. Besides, User must provide a file annotating each cell barcode with a cell type. The example of a file with annotaions is presented below. User also can specify prefixes of outputs with the option "--outprefix". 
+  (i) Input is a single sam file: The input must be a sam file tagged with "CB:Z:" to record cell barcodes for each read. Besides, User must provide a file annotating each cell      barcode with a cell type. The example of a file with annotaions is presented below. User also can specify prefixes of outputs with the option "--outprefix". 
 
 ```
 AAACCTGAGAATCTCC-9,Alpha
@@ -131,7 +131,7 @@ AAACCTGAGCCATCGC-1,Alpha
 ```
 Output will be several sam files and a csv file named as "split_input_file_list.csv" which can be used in pileup process.
 
-(ii) Input is a file list: The input should be a csv table with sam file, out prefixes and their corresponding annotation files. Here is the example:
+ (ii) Input is a file list: The input should be a csv table with sam file, out prefixes and their corresponding annotation files. Here is the example:
     ```
         genome10x_98.sam,genome10x_98,human_cutted.csv
         genome10x_99.sam,genome10x_99,human_cutted.csv
@@ -140,7 +140,7 @@ Output will be several sam files and a csv file named as "split_input_file_list.
 
 
 5. "--mergesamecell": merging 'A', 'T', 'C', 'G', 'coverage' txt files of the same celltype according to user's cell annotations.
-(i) Input is a file list: The input must be a csv table with the sorted bam file, out prefixes and the celltype annotations. Here is the example:
+ (i) Input is a file list: The input must be a csv table with the sorted bam file, out prefixes and the celltype annotations. Here is the example:
 
 ```
 3562459_2.bam,3562459,alpha
