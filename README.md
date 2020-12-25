@@ -134,7 +134,7 @@ Output will be several sam files and a csv file named as "split_input_file_list.
     ```
         genome10x_98.sam,genome10x_98,human_cutted.csv
         genome10x_99.sam,genome10x_99,human_cutted.csv
-    ```
+    ```  
 Output will be several sam files and a csv file named as "split_input_file_list.csv" which can be used in pileup process.
 
 5."--mergesamecell": merging 'A', 'T', 'C', 'G', 'coverage' txt files of the same celltype according to user's cell annotations.
