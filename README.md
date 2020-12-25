@@ -155,7 +155,7 @@ Output will be several sam files and a csv file named as "split_input_file_list.
 
 User can run multiple functions of PPL by adding more than one parameter. For example, is this article, when dealing with 10x data, we can generate the rds file directly by using options "--split-sam -p -m -r". The input is depended on the priority listed below:
 
-Input priority: "--split-sam" > "--pileup" > "--mergesamecell" >"--merge" > "--generate-rds"
+Input priority: "--split-sam" > "--mergesamecell" >"--pileup" > "--merge" > "--generate-rds"
 
 That is to say, when you add --split-sam and --pileup at the same time, your input file should be a sam or sam files list, not bam or bam files list, etc.
 
