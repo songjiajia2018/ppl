@@ -65,13 +65,42 @@ python2indrops.py {PROJECT_YAML} quantify
 The bam file obtained through the indrops process will be used for sort and call mutations. Since the coverage of indrops data is relatively low, we merged the mutation files of the same cell types. This step can be done through PPL, and will merge the files according to the user's cell annotations.
 
 # USAGE
-As is described above, PPL has five main functions resulting different inputs and outputs. User can run a single module in the PPL or combine many of them to reach their purposes.
+As is described above, PPL has five main functions resulting different inputs and outputs. User can run a single module in the PPL or combine many of them to reach their purposes. Note that except onlying runing PPL with option "--merge"(-m) or "--generate-rds"(-r), PPL will automatically created a directory which path is specified by "--outdir"/"--name". All the outputs will under that directory.
+User can find examples for input and output in the "ppl/Examples" dircetory.
+To use the PPL easier, users can just download the whole repository and copy it to the work directory. 
+
 # RUNNING PPL WITH A SINGLE MODULE
+1. "--pileup" or "-p": calling variations from a bam file and generating five txt files with 'A', 'T', 'C', 'G', 'coverage' suffixes respectively.
+
+(i) Input is a single file: The input should be a sorted bam file. User can specify prefixes of outputs with the option "--outprefix".
+
+(ii) Input is a file list: The input should be a csv table with the sorted bam file and their outprefixes. Here is the example:
+
+    ```
+    3562459_2.bam,3562459
+    3562814_2.bam,3562814
+    3563095_2.bam,3563095
+    3563458_2.bam,3563458
+    3563907_2.bam,3563907
+    3564431_2.bam,3564431
+    3564753_2.bam,3564753
+    '''
+    
+    The output are five mutations files for each input :
+    
+    ```
+    3562459.A.txt         3562814.A.txt         3563095.A.txt         3563458.A.txt         3563907.A.txt         3564431.A.txt         3564753.A.txt
+    3562459.coverage.txt  3562814.coverage.txt  3563095.coverage.txt  3563458.coverage.txt  3563907.coverage.txt  3564431.coverage.txt  3564753.coverage.txt
+    3562459.C.txt         3562814.C.txt         3563095.C.txt         3563458.C.txt         3563907.C.txt         3564431.C.txt         3564753.C.txt
+    3562459.G.txt         3562814.G.txt         3563095.G.txt         3563458.G.txt         3563907.G.txt         3564431.G.txt         3564753.G.txt
+    3562459.T.txt         3562814.T.txt         3563095.T.txt         3563458.T.txt         3563907.T.txt         3564431.T.txt         3564753.T.txt
+    ```
+    
+2.
+    
 
 
 
-
-To use the PPL easier, users can just download the whole repository and copy it to their work directory. 
 
 
 
