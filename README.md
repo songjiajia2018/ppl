@@ -132,10 +132,10 @@ Output will be several sam files and a csv file named as "split_input_file_list.
 
 (ii) Input is a file list: The input should be a csv table with sam file, out prefixes and their corresponding annotation files. Here is the example:
     ```
-        genome10x_98.sam,genome10x_98,human_cutted.csv
-        genome10x_99.sam,genome10x_99,human_cutted.csv
+        genome10x_98.sam,genome10x_98,human_cutted.csv  
+        genome10x_99.sam,genome10x_99,human_cutted.csv  
     ```  
-Output will be several sam files and a csv file named as "split_input_file_list.csv" which can be used in pileup process.
+     Output will be several sam files and a csv file named as "split_input_file_list.csv" which can be used in pileup process.
 
 5."--mergesamecell": merging 'A', 'T', 'C', 'G', 'coverage' txt files of the same celltype according to user's cell annotations.
 (i) Input is a file list: The input must be a csv table with the sorted bam file, out prefixes and the celltype annotations. Here is the example:
