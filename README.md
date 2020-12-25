@@ -10,7 +10,7 @@ NOTE：THIS IS A TEMPORARY INTRODUTION TO THIS REPOSITORY
 5. [EXAMPLES](#examples)
 
 # INTRODUCTION 
-PPL is an optimized and integrated pipeline that conducts many steps of analyses within the manuscript instead of raw scripts that have poor versatility. However, raw codes within the "source_code" directory were still shared for possible use. PPL integrated five main functions, including (i) calling variations from a bam file and generating five txt files with 'A', 'T', 'C', 'G', 'coverage' suffixes respectively("--pileup" or "-p"); (ii) merging all the 'A', 'T', 'C', 'G', 'coverage' txt files in a directory to five files with ".gz" format for the following rds generation("--merge" or "-m"); (iii) generating rds file for downstream analyses from a directory containing merged 'A', 'T', 'C', 'G', 'coverage' txt file("--generate-rds" or "-r"); (iv) spliting a big sam file to several parts based on the cell barcodes and their corresponding celltype annotations("--split-sam"); (V) merging 'A', 'T', 'C', 'G', 'coverage' txt files of the same celltype according to user's cell annotations("--mergesamecell").
+PPL is an optimized and integrated pipeline that conducts many steps of analyses within the manuscript instead of raw scripts that have poor versatility. However, raw codes within the "source_code" directory were still shared for possible use. PPL integrated five main functions, including (i) calling variations from a bam file and generating five txt files with 'A', 'T', 'C', 'G', 'coverage' suffixes respectively("--pileup" or "-p"); (ii) merging all the 'A', 'T', 'C', 'G', 'coverage' txt files in a directory to five files with ".gz" format for the following rds generation("--merge" or "-m"); (iii) generating rds file for downstream analyses from a directory containing merged 'A', 'T', 'C', 'G', 'coverage' txt files.("--generate-rds" or "-r"); (iv) spliting a big sam file to several parts based on the cell barcodes and their corresponding celltype annotations("--split-sam"); (V) merging 'A', 'T', 'C', 'G', 'coverage' txt files of the same celltype according to user's cell annotations("--mergesamecell").
 
 # PREREQUISITES
 python2:pysam  
@@ -96,12 +96,34 @@ To use the PPL easier, users can just download the whole repository and copy it 
     3562459.T.txt         3562814.T.txt         3563095.T.txt         3563458.T.txt         3563907.T.txt         3564431.T.txt         3564753.T.txt
     ```
     
-2. "--merge" or "-m":merging all the 'A', 'T', 'C', 'G', 'coverage' txt files in a directory to five files with ".gz" format for the following rds generation.
+2. "--merge" or "-m": merging all the 'A', 'T', 'C', 'G', 'coverage' txt files in a directory to five files with ".gz" format for the following rds generation.
 
-(i) with "--pileup " or "--mergesamecell": The input directory path be  will automatically set as  "--outdir"/"--name" o
+(i) with "--pileup " or "--mergesamecell": The input directory path be will automatically set as "--outdir"/"--name" or "--outdir"/"--name"/samecell_merged.
+
+(ii) without "--pileup " or "--mergesamecell": The input must be a directory containing mutations files.
+
+The outputs are five merged mutations files with .gz suffixes:
+
+```
+pplsmart_all.A.txt.gz
+pplsmart_all.C.txt.gz
+pplsmart_all.G.txt.gz
+pplsmart_all.T.txt.gz
+pplsmart_all.coverage.txt.gz
+```
+
+3. "--generate-rds" or "-r": generating rds file for downstream analyses from a directory containing merged 'A', 'T', 'C', 'G', 'coverage' txt files.
+
+(i) with "--merge": The input directory path is as same as it in "--merge" step.
+
+(ii) without "--merge": The input must be a directory containing merged mutations files from the "--merge" step. 
     
+4. "--split-sam": spliting a big sam file to several parts based on the cell barcodes and their corresponding celltype annotations.
 
+(i) input is a single sam file: The input must be a sam file tagged with "CB:Z:" to record cell barcodes for each read. Besides, User must provide a file annotating each cell barcode with a cell type. The example of a file with annotaions is presented below. User also can specify prefixes of outputs with the option "--outprefix". 
 
+```
+                                
 
 # RUNNING PPL WITH MUTIPLE FUNCTIONS
 
