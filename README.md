@@ -174,5 +174,5 @@ Here are examles of running mutiple functions:
  (iii) Call variation, merge all the mutations files in the directory, generate rds file  
  
  ```
- python ppl/ppl2_test.py -t 10 --input-filelist -p -m -r --name pplsmart --input smart_list
+ python ppl/ppl2_run.py -t 10 --input-filelist -p -m -r --name pplsmart --input smart_list
  ```
