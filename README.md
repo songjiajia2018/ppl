@@ -7,7 +7,6 @@ NOTE：THIS IS A TEMPORARY INTRODUTION TO THIS REPOSITORY
 4. [USAGE](#usage)  
     4.1 [RUNNING PPL WITH A SINGLE FUNCTION](#running-ppl-with-a-single-function)  
     4.2 [RUNNING PPL WITH MUTIPLE FUNCTIONS](#running-ppl-with-mutiple-functions)  
-5. [EXAMPLES](#examples)
 
 # INTRODUCTION 
 PPL is an optimized and integrated pipeline that conducts many steps of analyses within the manuscript instead of raw scripts that have poor versatility. However, raw codes within the "source_code" directory were still shared for possible use. PPL integrated five main functions, including (i) calling variations from a bam file and generating five txt files with 'A', 'T', 'C', 'G', 'coverage' suffixes respectively("--pileup" or "-p"); (ii) merging all the 'A', 'T', 'C', 'G', 'coverage' txt files in a directory to five files with ".gz" format for the following rds generation("--merge" or "-m"); (iii) generating rds file for downstream analyses from a directory containing merged 'A', 'T', 'C', 'G', 'coverage' txt files.("--generate-rds" or "-r"); (iv) spliting a big sam file to several parts based on the cell barcodes and their corresponding celltype annotations("--split-sam"); (V) merging 'A', 'T', 'C', 'G', 'coverage' txt files of the same celltype according to user's cell annotations("--mergesamecell").
@@ -74,9 +73,8 @@ To use the PPL easier, users can just download the whole repository and copy it 
 
 (i) Input is a single file: The input should be a sorted bam file. User can specify prefixes of outputs with the option "--outprefix".
 
-(ii) Input is a file list: The input should be a csv table with the sorted bam file and their outprefixes. Here is the example:
-
-    ```
+(ii) Input is a file list: The input should be a csv table with the sorted bam file and their out prefixes. Here is the example:
+    
     3562459_2.bam,3562459
     3562814_2.bam,3562814
     3563095_2.bam,3563095
@@ -84,23 +82,20 @@ To use the PPL easier, users can just download the whole repository and copy it 
     3563907_2.bam,3563907
     3564431_2.bam,3564431
     3564753_2.bam,3564753
-    ```
     
-    The output are five mutations files for each input :
+   The output are five mutations files for each input:
     
-    ```
     3562459.A.txt         3562814.A.txt         3563095.A.txt         3563458.A.txt         3563907.A.txt         3564431.A.txt         3564753.A.txt
     3562459.coverage.txt  3562814.coverage.txt  3563095.coverage.txt  3563458.coverage.txt  3563907.coverage.txt  3564431.coverage.txt  3564753.coverage.txt
     3562459.C.txt         3562814.C.txt         3563095.C.txt         3563458.C.txt         3563907.C.txt         3564431.C.txt         3564753.C.txt
     3562459.G.txt         3562814.G.txt         3563095.G.txt         3563458.G.txt         3563907.G.txt         3564431.G.txt         3564753.G.txt
     3562459.T.txt         3562814.T.txt         3563095.T.txt         3563458.T.txt         3563907.T.txt         3564431.T.txt         3564753.T.txt
-    ```
     
 2. "--merge" or "-m": merging all the 'A', 'T', 'C', 'G', 'coverage' txt files in a directory to five files with ".gz" format for the following rds generation.
 
-(i) with "--pileup " or "--mergesamecell": The input directory path be will automatically set as "--outdir"/"--name" or "--outdir"/"--name"/samecell_merged.
+(i) With "--pileup " or "--mergesamecell": The input directory path be will automatically set as "--outdir"/"--name" or "--outdir"/"--name"/samecell_merged.
 
-(ii) without "--pileup " or "--mergesamecell": The input must be a directory containing mutations files.
+(ii) Without "--pileup " or "--mergesamecell": The input must be a directory containing mutations files.
 
 The outputs are five merged mutations files with .gz suffixes:
 
@@ -114,51 +109,65 @@ pplsmart_all.coverage.txt.gz
 
 3. "--generate-rds" or "-r": generating rds file for downstream analyses from a directory containing merged 'A', 'T', 'C', 'G', 'coverage' txt files.
 
-(i) with "--merge": The input directory path is as same as it in "--merge" step.
+(i) With "--merge": The input directory path is as same as it in "--merge" step.
 
-(ii) without "--merge": The input must be a directory containing merged mutations files from the "--merge" step. 
+(ii) Without "--merge": The input must be a directory containing merged mutations files from the "--merge" step. 
     
 4. "--split-sam": spliting a big sam file to several parts based on the cell barcodes and their corresponding celltype annotations.
 
-(i) input is a single sam file: The input must be a sam file tagged with "CB:Z:" to record cell barcodes for each read. Besides, User must provide a file annotating each cell barcode with a cell type. The example of a file with annotaions is presented below. User also can specify prefixes of outputs with the option "--outprefix". 
+(i) Input is a single sam file: The input must be a sam file tagged with "CB:Z:" to record cell barcodes for each read. Besides, User must provide a file annotating each cell barcode with a cell type. The example of a file with annotaions is presented below. User also can specify prefixes of outputs with the option "--outprefix". 
 
 ```
-                                
+AAACCTGAGAATCTCC-9,Alpha
+AAACCTGAGAATGTTG-7,Alpha
+AAACCTGAGAGGACGG-6,Ductal
+AAACCTGAGCACCGTC-7,Alpha
+AAACCTGAGCCATCGC-1,Alpha
+```
+Output will be several sam files and a csv file named as "split_input_file_list.csv" which can be used in pileup process.
+
+(ii) Input is a file list: The input should be a csv table with sam file, out prefixes and their corresponding annotation files. Here is the example:
+    ```
+        genome10x_98.sam,genome10x_98,human_cutted.csv
+        genome10x_99.sam,genome10x_99,human_cutted.csv
+    ```
+Output will be several sam files and a csv file named as "split_input_file_list.csv" which can be used in pileup process.
+
+
+5. "--mergesamecell": merging 'A', 'T', 'C', 'G', 'coverage' txt files of the same celltype according to user's cell annotations.
+(i) Input is a file list: The input must be a csv table with the sorted bam file, out prefixes and the celltype annotations. Here is the example:
+
+```
+3562459_2.bam,3562459,alpha
+3562814_2.bam,3562814,alpha
+3563095_2.bam,3563095,alpha
+3563458_2.bam,3563458,belta
+3563907_2.bam,3563907,belta
+3564431_2.bam,3564431,belta
+3564753_2.bam,3564753,gama
+```
 
 # RUNNING PPL WITH MUTIPLE FUNCTIONS
 
+User can run multiple functions of PPL by adding more than one parameter. For example, is this article, when dealing with 10x data, we can generate the rds file directly by using options "--split-sam -p -m -r". The input is depended on the priority listed below:
 
-The input can be a single bam/sam file, a file list or a directory; depending on the user's requirements.   
-For the "--split-sam10x" option, the input must be a sam file or a file list (in csv format). The list must contain three columns without headers: sam file name, out prefix, annotation file. The example file list and annotation file can be found in a directory named "Examples". When the input is a single sam file, the out prefix and the annotation file must be specified.  
-For the "--" option, the input must be a file list (in csv format).The list must contain three columns without headers: bam file name, out prefix, cell-type.  
-For the "--pileup(-p)" option, the input must be a bam file or a file list (in csv format).  The list should contain two columns without headers, a bam file name and an out prefix.   
-For "--merge(-m)" and "--generate-rds(-r)", the input should be a directory.  
-Parameters combination "-p -m -r " is allowed (input is controlled by -p)  and they can co-exist with "--split-sam10x" (input controlled by --split-sam10x) and/or "--
+Input priority: "--split-sam" > "--pileup" > "--mergesamecell" >"--merge" > "--generate-rds"
 
-” （input controlled by --) to form a complete pipeline. (These three parameters plus any of the other two parameters can generate a rds).
-  
-OUTPUT：  
- "--split-sam10x" will provide a new file list and bam files for pileup.
- "--indrops" will generate merged ATCG and coverage files according to cell-types.
- "--Pileup" will generate ATCG and coverage files for every single bam.
- "--merge" will merge and gzip all the ATCG and coverage files in the directory for generating rds files.
- "--generate-rds" will generate a rds file.
- 
- # EXAMPLES
- Split sam, call variation, generate rds file
+That is to say, when you add --split-sam and --pileup at the same time, your input file should be a sam or sam files list, not bam or bam files list, etc.
+
+Here are examles of running mutiple functions:
+
+ (i) Split sam, call variations, merge all the mutations files in the directory, generate rds file
  
  ```
- python ppl/ppl2_test.py -t 10 --split-sam10x --input-filelist -p -m -r --name ppl10x --input 10x_list
+ python ppl/ppl2_run.py -t 10 --split-sam --input-filelist -p -m -r --name ppl10x --input 10x_list
  ```
- Call variation Merge ATCG and coverage files share the same cell-type, generate rds file
+(ii) Call variations, Merge mutations files with same cell-type,merge all the mutations files in the directory, generate rds file
  
  ```
- python ppl/ppl2_test.py -t 10 --indrops --input-filelist -p -m -r --name pplindrops --input indrops_list
+ python ppl/ppl2_run.py -t 10 --mergesamecell --input-filelist -p -m -r --name pplindrops --input indrops_list
  ```
- Call variation and generate rds file 
+ Call variation, merge all the mutations files in the directory, generate rds file
  ```
  python ppl/ppl2_test.py -t 10 --input-filelist -p -m -r --name pplsmart --input smart_list
  ```
- Call variation alone
- ```
-
