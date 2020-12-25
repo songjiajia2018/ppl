@@ -9,7 +9,12 @@ NOTE：THIS IS A TEMPORARY INTRODUTION TO THIS REPOSITORY
     4.2 [RUNNING PPL WITH MUTIPLE FUNCTIONS](#running-ppl-with-mutiple-functions)  
 
 # INTRODUCTION 
-PPL is an optimized and integrated pipeline that conducts many steps of analyses within the manuscript instead of raw scripts that have poor versatility. However, raw codes within the "source_code" directory were still shared for possible use. PPL integrated five main functions, including (i) calling variations from a bam file and generating five txt files with 'A', 'T', 'C', 'G', 'coverage' suffixes respectively("--pileup" or "-p"); (ii) merging all the 'A', 'T', 'C', 'G', 'coverage' txt files in a directory to five files with ".gz" format for the following rds generation("--merge" or "-m"); (iii) generating rds file for downstream analyses from a directory containing merged 'A', 'T', 'C', 'G', 'coverage' txt files.("--generate-rds" or "-r"); (iv) spliting a big sam file to several parts based on the cell barcodes and their corresponding celltype annotations("--split-sam"); (V) merging 'A', 'T', 'C', 'G', 'coverage' txt files of the same celltype according to user's cell annotations("--mergesamecell").
+PPL is an optimized and integrated pipeline that conducts many steps of analyses within the manuscript instead of raw scripts that have poor versatility. However, raw codes within the "source_code" directory were still shared for possible use. PPL integrated five main functions, including:
+(i) calling variations from a bam file and generating five txt files with 'A', 'T', 'C', 'G', 'coverage' suffixes respectively("--pileup" or "-p");   
+(ii) merging all the 'A', 'T', 'C', 'G', 'coverage' txt files in a directory to five files with ".gz" format for the following rds generation("--merge" or "-m");   
+(iii) generating rds file for downstream analyses from a directory containing merged 'A', 'T', 'C', 'G', 'coverage' txt files.("--generate-rds" or "-r");   
+(iv) spliting a big sam file to several parts based on the cell barcodes and their corresponding celltype annotations("--split-sam");   
+(V) merging 'A', 'T', 'C', 'G', 'coverage' txt files of the same celltype according to user's cell annotations("--mergesamecell").  
 
 # PREREQUISITES
 python2:pysam  
@@ -59,7 +64,7 @@ python2 indrops.py {YAML} build_index --genome-fasta-gz {GENOME_PATH} --ensembl-
 python2 indrops.py {PROJECT_YAML} filter
 python2 indrops.py {PROJECT_YAML} identify_abundant_barcodes
 python2 indrops.py {PROJECT_YAML} sort
-python2indrops.py {PROJECT_YAML} quantify
+python2 indrops.py {PROJECT_YAML} quantify
 ```
 The bam file obtained through the indrops process will be used for sort and call mutations. Since the coverage of indrops data is relatively low, we merged the mutation files of the same cell types. This step can be done through PPL, and will merge the files according to the user's cell annotations.
 
@@ -157,17 +162,18 @@ That is to say, when you add --split-sam and --pileup at the same time, your inp
 
 Here are examles of running mutiple functions:
 
- (i) Split sam, call variations, merge all the mutations files in the directory, generate rds file
+(i) Split sam, call variations, merge all the mutations files in the directory, generate rds file
  
  ```
  python ppl/ppl2_run.py -t 10 --split-sam --input-filelist -p -m -r --name ppl10x --input 10x_list
  ```
-(ii) Call variations, Merge mutations files with same cell-type,merge all the mutations files in the directory, generate rds file
+ (ii) Call variations, Merge mutations files with same cell-type,merge all the mutations files in the directory, generate rds file
  
  ```
  python ppl/ppl2_run.py -t 10 --mergesamecell --input-filelist -p -m -r --name pplindrops --input indrops_list
  ```
- Call variation, merge all the mutations files in the directory, generate rds file
+ (iii) Call variation, merge all the mutations files in the directory, generate rds file  
+ 
  ```
  python ppl/ppl2_test.py -t 10 --input-filelist -p -m -r --name pplsmart --input smart_list
  ```
