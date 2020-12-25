@@ -9,12 +9,12 @@ NOTE：THIS IS A TEMPORARY INTRODUTION TO THIS REPOSITORY
     4.2 [RUNNING PPL WITH MUTIPLE FUNCTIONS](#running-ppl-with-mutiple-functions)  
 
 # INTRODUCTION 
-PPL is an optimized and integrated pipeline that conducts many steps of analyses within the manuscript instead of raw scripts that have poor versatility. However, raw codes within the "source_code" directory were still shared for possible use. PPL integrated five main functions, including:
+PPL is an optimized and integrated pipeline that conducts many steps of analyses within the manuscript instead of raw scripts that have poor versatility. However, raw codes within the "source_code" directory were still shared for possible use. PPL integrated five main functions, including:  
 (i) calling variations from a bam file and generating five txt files with 'A', 'T', 'C', 'G', 'coverage' suffixes respectively("--pileup" or "-p");   
 (ii) merging all the 'A', 'T', 'C', 'G', 'coverage' txt files in a directory to five files with ".gz" format for the following rds generation("--merge" or "-m");   
 (iii) generating rds file for downstream analyses from a directory containing merged 'A', 'T', 'C', 'G', 'coverage' txt files.("--generate-rds" or "-r");   
 (iv) spliting a big sam file to several parts based on the cell barcodes and their corresponding celltype annotations("--split-sam");   
-(V) merging 'A', 'T', 'C', 'G', 'coverage' txt files of the same celltype according to user's cell annotations("--mergesamecell").  
+(v) merging 'A', 'T', 'C', 'G', 'coverage' txt files of the same celltype according to user's cell annotations("--mergesamecell").  
 
 # PREREQUISITES
 python2:pysam  
