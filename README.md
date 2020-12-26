@@ -17,7 +17,8 @@ PPL is an optimized and integrated pipeline that conducts many steps of analyses
 (v) merging 'A', 'T', 'C', 'G', 'coverage' txt files of the same celltype according to user's cell annotations("--mergesamecell").  
 
 # PREREQUISITES
-python2:pysam  
+Python2:  
+pysam  
 NOTE：PPL uses scripts in https://github.com/sankaranlab/mito-genotyping to call variations and generate rds files   
 Python3   
 R   
