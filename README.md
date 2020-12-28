@@ -106,11 +106,14 @@ To use the PPL easier, users can just download the whole repository and copy it 
 The output are five mutations files for each input:
 
 ```
-3562459.A.txt         3562814.A.txt         3563095.A.txt         3563458.A.txt         3563907.A.txt         3564431.A.txt         3564753.A.txt
-3562459.coverage.txt  3562814.coverage.txt  3563095.coverage.txt  3563458.coverage.txt  3563907.coverage.txt  3564431.coverage.txt  3564753.coverage.txt
-3562459.C.txt         3562814.C.txt         3563095.C.txt         3563458.C.txt         3563907.C.txt         3564431.C.txt         3564753.C.txt
-3562459.G.txt         3562814.G.txt         3563095.G.txt         3563458.G.txt         3563907.G.txt         3564431.G.txt         3564753.G.txt
-3562459.T.txt         3562814.T.txt         3563095.T.txt         3563458.T.txt         3563907.T.txt         3564431.T.txt         3564753.T.txt
+3562459.A.txt  3562459.coverage.txt  3562459.C.txt  3562459.G.txt  3562459.T.txt
+3562814.A.txt  3562814.coverage.txt  3562814.C.txt  3562814.G.txt  3562814.T.txt
+3563095.A.txt  3563095.coverage.txt  3563095.C.txt  3563095.G.txt  3563095.T.txt
+3563458.A.txt  3563458.coverage.txt  3563458.C.txt  3563458.G.txt  3563458.T.txt
+3563907.A.txt  3563907.coverage.txt  3563907.C.txt  3563907.G.txt  3563907.T.txt
+3564431.A.txt  3564431.coverage.txt  3564431.C.txt  3564431.G.txt  3564431.T.txt
+3564753.A.txt  3564753.coverage.txt  3564753.C.txt  3564753.G.txt  3564753.T.txt
+
 ```
  
 2."--merge" or "-m": merging all the 'A', 'T', 'C', 'G', 'coverage' txt files in a directory to five files with ".gz" format for the following rds generation.
