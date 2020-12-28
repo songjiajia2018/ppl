@@ -1,0 +1,2 @@
+genome10x_98.sam,genome10x_98,human_cutted.tsv
+genome10x_99.sam,genome10x_99,human_cutted.tsv
