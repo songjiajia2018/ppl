@@ -172,6 +172,7 @@ Output will be several sam files and a csv file named as "split_input_file_list.
 3564431_2.bam,3564431,belta
 3564753_2.bam,3564753,gama
 ```
+NOTE: The mapping quality in the final output mutations files are set to “30” because the mapping quality of mutation positions after merged makes no sense.
 
 # RUNNING PPL WITH MUTIPLE FUNCTIONS
 
