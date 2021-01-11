@@ -1,0 +1,8 @@
+#perl prepare.pl >input_list
+input_list
+s5_beta,s5_alpha:s6_beta,s6_alpha
+#####
+python ppl/ppl2_run.py -t 10 --mergesamecell --input-filelist -p -m -r --name pplindrops --input input_list
+/home/songjia/software/R-3.6.0/bin/Rscript samples.R pplindrops/samecell_merged/processed.MAE_mito.rds s5_beta,s5_alpha:s6_beta,s6_alpha
+
+Rscript samples.R rds文件 配对比较信息（配对信息用，表示，不同配对之间用：）
