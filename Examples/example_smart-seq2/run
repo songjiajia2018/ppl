@@ -1,0 +1,4 @@
+smart_list
+annotation
+python ppl/ppl2_run.py -t 10 --input-filelist -p -m -r --name pplsmart --input smart_list
+Rscript cells.R pplsmart/processed.MAE_mito.rds annotation 10
