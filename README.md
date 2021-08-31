@@ -7,6 +7,7 @@ NOTE：THIS IS A TEMPORARY INTRODUTION TO THIS REPOSITORY
 4. [USAGE](#usage)  
     4.1 [RUNNING A WHOLE PIPELINE](#running-a-whold-pipeline)  
     4.2 [RUNNING PART OF PPL](#running-part-of-ppl)  
+5. [EXTRACT ALLELE FREQUENCY](#extract-allele-frequency)
 
 # INTRODUCTION 
 PPL is an optimized and integrated pipeline that conducts many steps of analyses within the manuscript instead of raw scripts, which have poor versatility.. PPL integrated five main functions, including:  
@@ -306,3 +307,16 @@ Example:
 Rscript cells.R pplsmart/processed.MAE_mito.rds annotation 10
 ```
 The example annotation file can be found in "ppl/example/example_smart-seq2 "
+
+# EXTRACT ALLELE FREQUENCY
+Extract mitochondrial variants frequency matrix, where a column represented a single cell and a row represented variants frequency of a specific mitochondrial genotype, with two other column "altAllele" and "refAllele". 
+"altAllele" column represents the mutant allele; "refAllele" column represents the reference allele. 
+
+```
+Rscript extract_af.R {RDS} 
+```
+
+Example:  
+```
+Rscript extract_af.R processed.MAE_mito.rds 
+```
