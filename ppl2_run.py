@@ -35,14 +35,13 @@ parser.add_argument('-m', '--merge', required = False, action = 'store_true', he
 parser.add_argument('-r', '--generate-rds', required = False, action = 'store_true', help = 'Active Generate Rds Module to \
                     make rds file from merged pileup results. The input should be a dirctory')
 parser.add_argument('--outdir', required = False, default = '.', type = str, help = 'Specify the output directory ')
-parser.add_argument('--pplpath', required = False, default = './ppl', type = str, help = 'Specify the mito directory')
 parser.add_argument('--qbase', required = False, default = 30, type = int, help = 'Specify Minimum base quality to be considered \
                     for pileup. (default: 30)')
 parser.add_argument('--qalign', required = False, default = 30, type = int, help = 'Specify minimum alignment quality \
                     required to be considered. (default: 30)')
 parser.add_argument('--maxBP', required = False, default = 16569, type = int, help = ' Specify maximum length of mtDNA genome. \
                     (default: 16569, for mt.fa)')
-parser.add_argument('--reference', required = False, default = './ppl/mito_reference/mt.fa', type = str, help = 'Specify the mtDNA \
+parser.add_argument('--reference', required = False, default = '/DEFAULT_REFERENCE/', type = str, help = 'Specify the mtDNA \
                     reference. (default:./ppl/mito_reference/mt.fa)')
 parser.add_argument('--split-sam', required = False, action = 'store_true', help = 'split sam according to the celltype annotation, \
                     Input sam files must be tagged with "CB:Z:" for reads barcodes.')
@@ -63,7 +62,7 @@ pileup_bool = params.pileup
 merge_pileup_bool = params.merge
 generate_rds_bool = params.generate_rds
 out_dir_path = params.outdir
-path = params.pplpath
+path = os.path.abspath(sys.argv[0]).rstrip('ppl2_run.py')
 qbase = params.qbase
 qalign = params.qalign
 maxBP = params.maxBP
@@ -79,6 +78,8 @@ file_input_process_list = []
 file_outprefix_process_list = []
 pileup_process_list = []
 indrops_celltype_dict = defaultdict(list)
+if reference_fasta == '/DEFAULT_REFERENCE/':
+    reference_fasta = path + 'mito_reference/mt.fa'
 
 
 
@@ -147,8 +148,9 @@ def seq10xsplitfuction(samfile, outsam_prefix, annotation):
         for line in ann:
             line = line.rstrip()
             line = re.sub('\n', '', line)
-            cell_barcode = line.split(',')[0].split('-')[0]
-            cell_type = line.split(',')[1]
+            cell_barcode = line.split(',')[0].split('-')[0].strip('\'').strip('"')
+            cell_type = line.split(',')[1].strip('\'').strip('"')
+            cell_type = re.sub(r'\s+', '_', cell_type)
             seq10x_CB_celltype_dict[cell_barcode] = cell_type
     with open(samfile, 'r') as sam:
         for line in sam:
@@ -175,9 +177,9 @@ def seq10xsplitfuction(samfile, outsam_prefix, annotation):
         newfile_list.append((file_name_prefix + '_sorted.bam', file_name_prefix))
         with open(file_name_prefix + '.sam', 'w') as OUT:
             for titles in title_line_list:
-                OUT.write(titles + '\n')
+                OUT.write(titles)
             for content in s10x_cells:
-                OUT.write(content + '\n')
+                OUT.write(content)
         os.system('''samtools view -b -@ {1} -o {0}.bam {0}.sam;
                      samtools sort -@ {1} -o {0}_sorted.bam {0}.bam'''.format(file_name_prefix, samtools_additional_threads))
     return newfile_list
@@ -290,11 +292,13 @@ if __name__ == '__main__':
                     line = re.sub('\n', '', line)
                     mysam = line.split(',')[0]
                     outsam_prefix = line.split(',')[1]
+                    outsam_prefix = re.sub(r'\s+', '_', outsam_prefix)
                     mytsv = line.split(',')[2]
                     s10x_sam_tsv_process_list.append((mysam, outsam_prefix, mytsv))
         else:
             mysam = input_file
             outsam_prefix = out_prefix
+            outsam_prefix = re.sub(r'\s+', '_', outsam_prefix)
             mytsv = split_ann
             s10x_sam_tsv_process_list.append((mysam, outsam_prefix, mytsv))
         # confirm the the threads for pool
@@ -326,6 +330,7 @@ if __name__ == '__main__':
                 line = re.sub('\n', '', line)
                 myfile = line.split(',')[0]
                 myfile_prefix = line.split(',')[1]
+                myfile_prefix = re.sub(r'\s+', '_', myfile_prefix)
                 if indrops_bool:
                     cell_type = line.split(',')[2]
                     indrops_celltype_dict[cell_type].append(myfile_prefix)
